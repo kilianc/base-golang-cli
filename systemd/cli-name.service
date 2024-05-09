@@ -1,0 +1,10 @@
+[Unit]
+Description=cli-name
+
+[Service]
+Type=oneshot
+EnvironmentFile=/usr/local/etc/cli-name/cli-name.env
+ExecStart=/usr/local/bin/cli-name
+
+[Install]
+WantedBy=multi-user.target
