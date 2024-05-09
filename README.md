@@ -1,4 +1,12 @@
 <!-- markdownlint-disable MD041 MD033 -->
+> [!NOTE]
+> This repository is a template for Golang based CLIs. To use it:
+>
+> 1. `git clone git@github.com:kilianc/base-golang-cli.git <your-cli-name>`
+> 1. edit the `BINARY_NAME` value in the `Makefile` to `<your-cli-name>`
+> 1. run `make rename-cli`
+
+---
 
 <p align="center">
   <br>
@@ -29,11 +37,6 @@
 • starting `cli-name` (description)
 • press ctrl+c to stop
 ````
-
-### Usage
-
-> [!NOTE]
-> This repository is a base template, to use it clone it, edit the `BINARY_NAME` value in the `Makefile` and run `make rename-cli`.
 
 ### Install
 
