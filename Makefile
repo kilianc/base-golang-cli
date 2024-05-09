@@ -179,6 +179,7 @@ rename-cli: clean
 		-name Makefile -prune -o \
 		-type f \
 		-exec ex -sc '%s/cli-name/$(BINARY_NAME)/g' -c 'x' {} \;
+	@mv cmd/cli-name cmd/$(BINARY_NAME)
 	@git status
 
 # - clean
