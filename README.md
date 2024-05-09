@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <h1 align="center"><code>cli-name</code></h1>
+  <h1 align="center"><code>cli-name</code> </h1>
 </p>
 
 <p align="center">
