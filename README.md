@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  <h1 align="center"><code>cli-name</code> </h1>
+  <h1 align="center"><code>cli-name</code></h1>
 </p>
 
 <p align="center">
@@ -29,6 +29,11 @@
 • starting `cli-name` (description)
 • press ctrl+c to stop
 ````
+
+### Usage
+
+> [!NOTE]
+> This repository is a base template, to use it clone it, edit the `BINARY_NAME` value in the `Makefile` and run `make rename-cli`.
 
 ### Install
 
