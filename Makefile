@@ -1,5 +1,5 @@
 PROJECT_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-BINARY_NAME := kilian-cli
+BINARY_NAME := cli-name
 
 # - binary dependencies
 GOTESTSUM_VERSION := v1.11.0
