@@ -1,0 +1,14 @@
+{
+  "cSpell.words": [
+    "fsroot",
+    "lmittmann",
+    "tempdir"
+  ],
+  "go.lintTool": "golangci-lint",
+  "gopls": {
+    "formatting.gofumpt": true,
+    "ui.diagnostic.analyses": {
+      "loopclosure": false
+    }
+  }
+}
