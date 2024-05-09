@@ -65,11 +65,10 @@ cover.out:
 cover.txt: cover.out
 	@cd $(PROJECT_DIR) && go tool cover -func=cover.out -o cover.txt
 
-.PHONY: cover
-cover: cover.out
+.PHONY: cover.html
+cover.html: cover.out
 	@go tool cover -func=cover.out
 	@cd $(PROJECT_DIR) && go tool cover -html=cover.out -o cover.html
-	@read -p "Press enter to open cover.html in browser" && open cover.html
 
 # - build and release
 
