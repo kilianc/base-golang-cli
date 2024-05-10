@@ -17,7 +17,7 @@ const updateCodeCoverageComment = module.exports = async ({ context, github }) =
 
   const commentBody = [
     '<!-- coverage -->',
-    `### [Code Coverage Report 🔗](https://htmlpreview.github.io/?https://github.com/kilianc/base-golang-cli/blob/cover/${process.env.REVISION}.html#file0) for ${process.env.REVISION}`,
+    `### [Code Coverage Report 🔗](https://kilianc.github.io/base-golang-cli/${process.env.REVISION}.html#file0) for ${process.env.REVISION}`,
     '```',
     `Total: ${coverageTextSummary}`,
     '```',

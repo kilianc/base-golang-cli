@@ -13,6 +13,7 @@ BUILD_TARGETS := $(foreach os,$(OS_LIST),$(foreach arch,$(ARCH_LIST),bin/$(BINAR
 RELEASE_TARGETS := $(foreach os,$(OS_LIST),$(foreach arch,$(ARCH_LIST),bin/$(BINARY_NAME)-$(os)-$(arch).tar.gz))
 
 # - remote testing
+
 REMOTE_HOSTS := $(shell cat hosts.txt 2> /dev/null || echo "")
 
 # - default target
@@ -69,6 +70,7 @@ cover.txt: cover.out
 cover.html: cover.out
 	@go tool cover -func=cover.out
 	@cd $(PROJECT_DIR) && go tool cover -html=cover.out -o cover.html
+	@ex -sc '%s/<style>/<style>@import url("nord.css");/' -c 'x' cover.html
 
 # - build and release
 
