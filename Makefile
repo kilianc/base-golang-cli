@@ -5,6 +5,7 @@ BINARY_NAME := cli-name
 GOTESTSUM_VERSION := v1.11.0
 GOFUMPT_VERSION := v0.6.0
 GOLANGCI_LINT_VERSION := v1.57.2
+ENTR_VERSION := 5.5
 
 # - multi-platform build
 OS_LIST := darwin linux
@@ -20,6 +21,13 @@ REMOTE_HOSTS := $(shell cat hosts.txt 2> /dev/null || echo "")
 .DEFAULT_GOAL := run
 
 # - install binary dependencies
+
+bin/entr:
+	@curl -o bin/entr-$(ENTR_VERSION).tar.gz https://eradman.com/entrproject/code/entr-$(ENTR_VERSION).tar.gz
+	@tar -xf bin/entr-$(ENTR_VERSION).tar.gz -C bin
+	@cd bin/entr-$(ENTR_VERSION) && ./configure && make
+	@mv bin/entr-$(ENTR_VERSION)/entr bin/entr
+	@rm -rf bin/entr-$(ENTR_VERSION)*
 
 bin/git-chglog:
 	@mkdir -p $(@D)
@@ -45,6 +53,10 @@ bin/gotestsum:
 .PHONY: run
 run: .env
 	@source .env && go run cmd/$(BINARY_NAME)/main.go
+
+.PHONY: run-watch
+run-watch: bin/entr
+	find . -name "*.go" -type f | bin/entr -rnd $(MAKE) run
 
 .PHONY: lint
 lint: bin/golangci-lint
