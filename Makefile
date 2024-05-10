@@ -145,7 +145,6 @@ check-commit:
 	@echo ""
 	@go run tools/commitcheck/main.go '$(message)'
 
-
 # - remote
 
 .PHONY: remote-run
