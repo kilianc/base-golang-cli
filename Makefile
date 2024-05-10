@@ -58,7 +58,12 @@ run: .env
 
 .PHONY: run-watch
 run-watch: bin/entr
-	find . -name "*.go" -type f | bin/entr -rnd $(MAKE) run
+	$(eval flags := rd)
+	@trap '_run_=false' SIGINT; \
+	while $$_run_; do \
+		find . -name "*.go" -type f | bin/entr -$(flags) $(MAKE) run; \
+		sleep 0.1; \
+	done ;\
 
 .PHONY: lint
 lint: bin/golangci-lint
@@ -71,18 +76,19 @@ lint-fix: bin/golangci-lint
 .PHONY: test
 test: bin/gotestsum lint
 	@echo ""
-	@cd $(PROJECT_DIR) && $(PROJECT_DIR)/bin/gotestsum --format testdox -- -coverprofile=cover.out -coverpkg=./... $(shell go list ./... | grep -v /tools/ | grep -v /cmd/)
+	@bin/gotestsum --format testdox -- -coverprofile=cover.out -coverpkg=./... $(shell go list ./... | grep -v /tools/ | grep -v /cmd/)
+	@go tool cover -func=cover.out
 
 cover.out:
 	@if [ ! -f cover.out ]; then $(MAKE) test; fi
 
 cover.txt: cover.out
-	@cd $(PROJECT_DIR) && go tool cover -func=cover.out -o cover.txt
+	@go tool cover -func=cover.out -o cover.txt
 
 .PHONY: cover.html
 cover.html: cover.out
 	@go tool cover -func=cover.out
-	@cd $(PROJECT_DIR) && go tool cover -html=cover.out -o cover.html
+	@go tool cover -html=cover.out -o cover.html
 	@ex -sc '%s/<style>/<style>@import url("nord.css");/' -c 'x' cover.html
 
 # - build and release
