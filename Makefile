@@ -24,6 +24,7 @@ REMOTE_HOSTS := $(shell cat hosts.txt 2> /dev/null || echo "")
 # - install binary dependencies
 
 bin/entr:
+# https://eradman.com/entrproject/entr.1.html
 	@curl -o bin/entr-$(ENTR_VERSION).tar.gz https://eradman.com/entrproject/code/entr-$(ENTR_VERSION).tar.gz
 	@tar -xf bin/entr-$(ENTR_VERSION).tar.gz -C bin
 	@cd bin/entr-$(ENTR_VERSION) && ./configure && make
