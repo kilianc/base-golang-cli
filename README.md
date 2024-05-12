@@ -72,9 +72,10 @@ These are the usual suspects
 
 ```sh
 make run
+make run-watch
 make build
 make test
-make cover
+make cover.html
 ```
 
 After running `make build` the binary available in the `bin/` folder
