@@ -16,7 +16,6 @@ jobs:
   build:
     name: Build and Test
     permissions:
-      issues: write
       pull-requests: write
       contents: write
     runs-on: ubuntu-latest
@@ -39,28 +38,13 @@ jobs:
     - name: Test
       run: make test
 
-    - name: Create cover.txt
-      run: make cover.txt
-
-    - name: Upload Cover
+    - name: Create cover files
       run: |
+        make cover.txt
         make cover.html
-        git clone -b cover https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/kilianc/base-golang-cli.git cover
-        cd cover
-        git config user.email "gha@github.com"
-        git config user.name "GHA"
-        mv ../cover.html ${REVISION}.html
-        git add -f ${REVISION}.html
-        git commit -m "chore: add cover for ${REVISION}"
-        git push origin cover
 
-    - name: Post Code Coverage Comment
-      uses: actions/github-script@v6
-      if: ${{ github.event_name == 'pull_request' }}
-      with:
-        script: |
-          const script = require('${{ github.workspace }}/.github/update-code-coverage-comment.js')
-          await script({ context, github })
+    - name: Go Beautiful HTML Coverage
+      uses: kilianc/go-beautiful-html-coverage@main
 
     - name: Cover Check
       run: make check-cover
