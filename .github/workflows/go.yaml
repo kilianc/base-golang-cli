@@ -16,7 +16,6 @@ jobs:
   build:
     name: Build and Test
     permissions:
-      issues: write
       pull-requests: write
       contents: write
     runs-on: ubuntu-latest
