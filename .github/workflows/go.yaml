@@ -42,7 +42,7 @@ jobs:
     - name: Create cover.txt
       run: make cover.txt
 
-    - name: Go Coverage
+    - name: Go Beautiful HTML Coverage
       uses: kilianc/github-action-go-coverage@v1
 
     - name: Cover Check
