@@ -39,8 +39,10 @@ jobs:
     - name: Test
       run: make test
 
-    - name: Create cover.txt
-      run: make cover.txt
+    - name: Create cover files
+      run: |
+        make cover.txt
+        make cover.html
 
     - name: Go Beautiful HTML Coverage
       uses: kilianc/github-action-go-coverage@v1
