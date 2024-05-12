@@ -44,7 +44,7 @@ jobs:
         make cover.html
 
     - name: Go Beautiful HTML Coverage
-      uses: kilianc/github-action-go-coverage@v1
+      uses: kilianc/github-action-go-coverage@fix-path
 
     - name: Cover Check
       run: make check-cover
