@@ -42,25 +42,8 @@ jobs:
     - name: Create cover.txt
       run: make cover.txt
 
-    - name: Upload Cover
-      run: |
-        make cover.html
-        git clone -b cover https://oauth2:${{ secrets.GITHUB_TOKEN }}@github.com/kilianc/base-golang-cli.git cover
-        cd cover
-        git config user.email "gha@github.com"
-        git config user.name "GHA"
-        mv ../cover.html ${REVISION}.html
-        git add -f ${REVISION}.html
-        git commit -m "chore: add cover for ${REVISION}"
-        git push origin cover
-
-    - name: Post Code Coverage Comment
-      uses: actions/github-script@v6
-      if: ${{ github.event_name == 'pull_request' }}
-      with:
-        script: |
-          const script = require('${{ github.workspace }}/.github/update-code-coverage-comment.js')
-          await script({ context, github })
+    - name: Go Coverage
+      uses: kilianc/github-action-go-coverage@v1
 
     - name: Cover Check
       run: make check-cover
