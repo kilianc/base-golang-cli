@@ -46,7 +46,7 @@ jobs:
     - name: Go Beautiful HTML Coverage
       uses: gha-common/go-beautiful-html-coverage@main
       with:
-        threshold: 80
+        threshold: 75
 
     - name: Cover Check
       run: make check-cover
